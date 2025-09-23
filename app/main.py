@@ -1,10 +1,21 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import demo
+from .core.log import logger
 from .core.config import settings
 from .core.exception_handler import register_exception_handlers
+from .routers import demo
 
-app = FastAPI(title="FastApi Service")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # 服务启动
+    logger.info("FastAPI 服务启动中...")
+    yield
+    # 服务停止
+    logger.info("FastAPI 服务停止中...")
+
+app = FastAPI(title="FastApi Service", lifespan=lifespan)
 
 # CORS 中间件
 app.add_middleware(

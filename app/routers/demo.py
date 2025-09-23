@@ -1,6 +1,7 @@
-from typing import List, Optional
 from fastapi import APIRouter, Depends
-from app.core.response import success, error, AppException
+
+from app.core.response import success, error
+from app.core.log import logger
 from app.schemas.response import Response
 from app.schemas.demo import User, Demo4Params, UserOut
 
@@ -9,6 +10,7 @@ router = APIRouter(prefix="/demo", tags=["demo"])
 
 @router.get("/")
 def home():
+    logger.error("home")
     return success(message="欢迎访问demo！")
 
 
