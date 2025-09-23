@@ -1,0 +1,12 @@
+[project]
+name = "fastapi-template-grpc"
+version = "0.1.0"
+description = "包含了grpc的fastapi框架模板"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[all]==0.116.1",
+    "pydantic==2.11.7",
+    "pydantic-settings==2.6.1",
+    "python-dotenv==1.1.0",
+    "uvicorn[standard]==0.35.0",
+]
