@@ -1,22 +1,26 @@
+import grpc
 from fastapi import APIRouter, Depends
+from google.protobuf.json_format import MessageToDict
 
+from app.core.config import settings
 from app.core.response import success, error
 from app.core.log import logger
 from app.schemas.response import Response
 from app.schemas.demo import User, Demo4Params, UserOut
+from generated.demo_service import demo_pb2_grpc, demo_pb2
 
 router = APIRouter(prefix="/demo", tags=["demo"])
 
 
 @router.get("/")
 def home():
-    logger.error("home")
     return success(message="欢迎访问demo！")
 
 
 @router.get("/1")
 def demo1():
     if True:
+        logger.error("预期报错测试日志")
         # raise error("预期报错可以这样返回")  # 支持无状态码
         raise error("预期报错可以这样返回", 409)
     return success()
@@ -67,3 +71,30 @@ def demo4(data: Demo4Params):
 @router.get("/5", response_model=Response[UserOut])
 def demo5(data: User = Depends()):
     return success(UserOut.model_validate(data))
+
+
+@router.get("/grpc")
+def demo_grpc():
+    local_service_address = settings.LOCAL_SERVICE_GRPC_ADDRESS
+    request = demo_pb2.HelloRequest(
+        greeting="hello",
+        user_id=1622210536,
+        is_active=False,
+        score=6,
+        sex=demo_pb2.Sex.FEMALE,
+        hobbies=["ut", "aa", "bb"],
+        properties={"bas123": "in est"},
+        user=demo_pb2.UserInfo(
+            id="dHls8Nu5D_ckHzjNM",
+            name="瓦利",
+            age=123
+        )
+    )
+
+    with grpc.insecure_channel(local_service_address) as channel:
+        stub = demo_pb2_grpc.DemoServiceStub(channel)
+        response = stub.SayHello(request)
+        logger.info(f"gRPC 服务返回：{response}")
+
+    json_data = MessageToDict(response, preserving_proto_field_name=True)
+    return success(json_data)

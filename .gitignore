@@ -38,6 +38,7 @@ dist/
 
 # Logs and databases
 *.log
+*.err
 *.sql
 *.sqlite
 
