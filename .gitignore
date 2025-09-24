@@ -48,3 +48,6 @@ Thumbs.db
 
 # node_modules
 node_modules/
+
+# pb2
+generated/
