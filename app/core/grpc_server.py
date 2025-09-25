@@ -1,6 +1,6 @@
 from concurrent import futures
 import grpc
-from ..grpc_services import register_grpc_services
+from ..routers.grpc import register_grpc_services
 from .config import settings
 from .log import logger
 

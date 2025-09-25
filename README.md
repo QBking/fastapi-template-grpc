@@ -93,7 +93,7 @@ pip install -r requirements.txt
 
 ### 1\. HTTP API (FastAPI)
 
-`app/routers/demo.py` 包含了多个 HTTP 接口示例，演示了 FastAPI 的路由、Pydantic 请求体验证和依赖注入。
+`app/routers/http/demo.py` 包含了多个 HTTP 接口示例，演示了 FastAPI 的路由、Pydantic 请求体验证和依赖注入。
 
 你可以使用任何 HTTP 客户端（如 cURL、Postman 或 Apifox）来测试这些接口。
 
@@ -110,13 +110,13 @@ pip install -r requirements.txt
 ### 2\. gRPC 服务
 
   * **gRPC 服务端**:
-    `app/grpc_services/demo_service.py` 文件实现了 `SayHello` gRPC 接口，它接收一个包含多种数据类型的复杂请求，并返回一个包含嵌套数据的响应。你可以使用 **Apifox** 来进行 gRPC 请求，或者使用下面准备好的接口测试。
+    `app/routers/grpc/demo.py` 文件实现了 `SayHello` gRPC 接口，它接收一个包含多种数据类型的复杂请求，并返回一个包含嵌套数据的响应。你可以使用 **Apifox** 来进行 gRPC 请求，或者使用下面准备好的接口测试。
 
   * **gRPC 客户端**:
-    `app/routers/demo.py` 中的 `/demo/grpc` 接口是一个完美的 gRPC 客户端代码示例。该接口通过 HTTP 触发，但其内部逻辑是向另一个后端 gRPC 服务（由 `.env` 文件配置）发起 gRPC 请求。
+    `app/routers/http/demo.py` 中的 `/demo/grpc` 接口是一个完美的 gRPC 客户端代码示例。该接口通过 HTTP 触发，但其内部逻辑是向另一个后端 gRPC 服务（由 `.env` 文件配置）发起 gRPC 请求。
 
     ```python
-    # 代码位置: app/routers/demo.py
+    # 代码位置: app/routers/http/demo.py
     @router.get("/grpc")
     def demo_grpc():
         """

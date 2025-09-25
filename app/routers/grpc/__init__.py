@@ -1,5 +1,5 @@
 from grpc import server
-from .demo_service import DemoService
+from app.routers.grpc.demo import DemoService
 from generated.demo import demo_service_pb2_grpc
 from app.core.log import logger
 
