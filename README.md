@@ -47,7 +47,7 @@ pip install -r requirements.txt
 在启动服务前，需要将 `.proto` 文件编译成 Python 代码。项目提供了一个便捷的脚本来完成此任务。
 
 ```bash
-./scripts/compile_protos.sh
+./compile_protos.sh
 ```
 
 该脚本会编译 `protos` 文件夹下的所有 `.proto` 文件，编译后的文件存放在根目录的 `generated`下
@@ -77,14 +77,14 @@ pip install -r requirements.txt
 
 ### 停止服务
 
-使用 `./scripts/stop.sh` 脚本来关闭在后台运行的服务。
+使用 `./stop.sh` 脚本来关闭在后台运行的服务。
 
 ```bash
 # 停止开发模式下的服务
-./scripts/stop.sh -d
+./stop.sh -d
 
 # 停止生产模式下的服务
-./scripts/stop.sh -p
+./stop.sh -p
 ```
 
 -----
