@@ -1,6 +1,6 @@
 from grpc import server
 from .demo_service import DemoService
-from generated.demo_service import demo_pb2_grpc
+from generated.demo import demo_service_pb2_grpc
 from app.core.log import logger
 
 
@@ -11,6 +11,6 @@ def register_grpc_services(grpc_server: server):
     logger.info("注册 gRPC 服务...")
 
     # 注册 DemoService
-    demo_pb2_grpc.add_DemoServiceServicer_to_server(DemoService(), grpc_server)
+    demo_service_pb2_grpc.add_DemoServiceServicer_to_server(DemoService(), grpc_server)
 
     logger.info("gRPC 服务注册完成。")

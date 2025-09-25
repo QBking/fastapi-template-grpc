@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package demo;
+
+enum Sex {
+  UNKNOWN = 0;
+  MALE = 1;
+  FEMALE = 2;
+}
+
+message UserInfo {
+  string id = 1;
+  string name = 2;
+  int32 age = 3;
+}

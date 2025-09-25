@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package demo;
+
+import "demo/demo_types.proto";
+
+message HelloRequest {
+  string greeting = 1;
+  int32 user_id = 2;
+  bool is_active = 3;
+  float score = 4;
+  Sex sex = 5;
+  repeated string hobbies = 6;
+  map<string, string> properties = 7;
+  UserInfo user = 8;
+}
+
+message HelloReply {
+  string message = 1;
+  int32 code = 2;
+  repeated string log_messages = 3;
+  UserInfo returned_user = 4;
+}
