@@ -34,6 +34,9 @@ pip install uv
 
 # 安装所有依赖
 uv sync
+
+# 激活环境
+source .venv/bin/activate
 ```
 
 #### 方法二：使用 pip
