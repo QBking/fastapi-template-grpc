@@ -6,6 +6,7 @@ requires-python = ">=3.11"
 dependencies = [
     "fastapi[all]==0.116.1",
     "grpcio>=1.75.0",
+    "grpcio-health-checking>=1.75.0",
     "grpcio-tools>=1.75.0",
     "loguru>=0.7.3",
     "pydantic==2.11.7",
